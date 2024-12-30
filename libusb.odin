@@ -23,7 +23,7 @@ when ODIN_OS == .Windows {
 	foreign import lib "lib/libusb-1.0.a"
 }
 
-Class_Code :: enum {
+Class_Code :: enum c.int {
 	/** In the context of a \ref libusb_device_descriptor "device descriptor"
 	 * this bDeviceClass value indicates that each interface specifies its
 	 * own class information and all interfaces operate independently.
@@ -69,7 +69,7 @@ Class_Code :: enum {
 	LIBUSB_CLASS_VENDOR_SPEC         = 0xff,
 }
 
-Descriptor_Type :: enum {
+Descriptor_Type :: enum c.int {
 	/** Device descriptor. See libusb_device_descriptor. */
 	LIBUSB_DT_DEVICE                = 0x01,
 	/** Configuration descriptor. See libusb_config_descriptor. */
@@ -133,7 +133,7 @@ LIBUSB_ENDPOINT_DIR_MASK :: 0x80
  * Endpoint direction. Values for bit 7 of the
  * \ref libusb_endpoint_descriptor::bEndpointAddress "endpoint address" scheme.
  */
-Endpoint_Direction :: enum {
+Endpoint_Direction :: enum c.int {
 	/** Out: host-to-device */
 	LIBUSB_ENDPOINT_OUT = 0x00,
 	/** In: device-to-host */
@@ -146,7 +146,7 @@ LIBUSB_TRANSFER_TYPE_MASK :: 0x03 /* in bmAttributes */
  * Endpoint transfer type. Values for bits 0:1 of the
  * \ref libusb_endpoint_descriptor::bmAttributes "endpoint attributes" field.
  */
-Endpoint_Transfer_Type :: enum {
+Endpoint_Transfer_Type :: enum c.int {
 	/** Control endpoint */
 	LIBUSB_ENDPOINT_TRANSFER_TYPE_CONTROL     = 0x0,
 	/** Isochronous endpoint */
@@ -159,7 +159,7 @@ Endpoint_Transfer_Type :: enum {
 
 /** \ingroup libusb_misc
  * Standard requests, as defined in table 9-5 of the USB 3.0 specifications */
-Standard_Request :: enum {
+Standard_Request :: enum c.int {
 	/** Request status of the specific recipient */
 	LIBUSB_REQUEST_GET_STATUS        = 0x00,
 	/** Clear or disable a specific feature */
@@ -199,7 +199,7 @@ Standard_Request :: enum {
  * Request type bits of the
  * \ref libusb_control_setup::bmRequestType "bmRequestType" field in control
  * transfers. */
-Request_Type :: enum {
+Request_Type :: enum c.int {
 	/** Standard */
 	LIBUSB_REQUEST_TYPE_STANDARD = (0x00 << 5),
 	/** Class */
@@ -214,7 +214,7 @@ Request_Type :: enum {
  * Recipient bits of the
  * \ref libusb_control_setup::bmRequestType "bmRequestType" field in control
  * transfers. Values 4 through 31 are reserved. */
-Request_Recipient :: enum {
+Request_Recipient :: enum c.int {
 	/** Device */
 	LIBUSB_RECIPIENT_DEVICE    = 0x00,
 	/** Interface */
@@ -232,7 +232,7 @@ LIBUSB_ISO_SYNC_TYPE_MASK :: 0x0c
  * \ref libusb_endpoint_descriptor::bmAttributes "bmAttributes" field in
  * libusb_endpoint_descriptor.
  */
-Iso_Sync_Type :: enum {
+Iso_Sync_Type :: enum c.int {
 	/** No synchronization */
 	LIBUSB_ISO_SYNC_TYPE_NONE     = 0x0,
 	/** Asynchronous */
@@ -250,7 +250,7 @@ LIBUSB_ISO_USAGE_TYPE_MASK :: 0x30
  * \ref libusb_endpoint_descriptor::bmAttributes "bmAttributes" field in
  * libusb_endpoint_descriptor.
  */
-Iso_Usage_Type :: enum {
+Iso_Usage_Type :: enum c.int {
 	/** Data endpoint */
 	LIBUSB_ISO_USAGE_TYPE_DATA     = 0x0,
 	/** Feedback endpoint */
@@ -263,7 +263,7 @@ Iso_Usage_Type :: enum {
  * Supported speeds (wSpeedSupported) bitfield. Indicates what
  * speeds the device supports.
  */
-Supported_Speed :: enum {
+Supported_Speed :: enum c.int {
 	/** Low speed operation supported (1.5MBit/s). */
 	LIBUSB_LOW_SPEED_OPERATION   = (1 << 0),
 	/** Full speed operation supported (12MBit/s). */
@@ -279,7 +279,7 @@ Supported_Speed :: enum {
  * \ref libusb_usb_2_0_extension_descriptor::bmAttributes "bmAttributes" field
  * of the USB 2.0 Extension descriptor.
  */
-USB20_Extension_Attributes :: enum {
+USB20_Extension_Attributes :: enum c.int {
 	/** Supports Link Power Management (LPM) */
 	LIBUSB_BM_LPM_SUPPORT = (1 << 1),
 }
@@ -289,7 +289,7 @@ USB20_Extension_Attributes :: enum {
  * \ref libusb_ss_usb_device_capability_descriptor::bmAttributes "bmAttributes" field
  * field of the SuperSpeed USB Device Capability descriptor.
  */
-SS_USB_Device_Capability_Attributes :: enum {
+SS_USB_Device_Capability_Attributes :: enum c.int {
 	/** Supports Latency Tolerance Messages (LTM) */
 	LIBUSB_BM_LTM_SUPPORT = (1 << 1),
 }
@@ -297,7 +297,7 @@ SS_USB_Device_Capability_Attributes :: enum {
 /** \ingroup libusb_desc
  * USB capability types
  */
-Bos_Type :: enum {
+Bos_Type :: enum c.int {
 	/** Wireless USB device capability */
 	LIBUSB_BT_WIRELESS_USB_DEVICE_CAPABILITY = 0x01,
 	/** USB 2.0 extensions */
@@ -660,7 +660,7 @@ ss_usb_device_capability_descriptor :: struct {
 /** \ingroup libusb_desc
  *  enum used in \ref libusb_ssplus_sublink_attribute
  */
-superspeedplus_sublink_attribute_sublink_type :: enum {
+superspeedplus_sublink_attribute_sublink_type :: enum c.int {
 	LIBUSB_SSPLUS_ATTR_TYPE_SYM  = 0,
 	LIBUSB_SSPLUS_ATTR_TYPE_ASYM = 1,
 }
@@ -668,7 +668,7 @@ superspeedplus_sublink_attribute_sublink_type :: enum {
 /** \ingroup libusb_desc
  *  enum used in \ref libusb_ssplus_sublink_attribute
  */
-superspeedplus_sublink_attribute_sublink_direction :: enum {
+superspeedplus_sublink_attribute_sublink_direction :: enum c.int {
 	LIBUSB_SSPLUS_ATTR_DIR_RX = 0,
 	LIBUSB_SSPLUS_ATTR_DIR_TX = 1,
 }
@@ -680,7 +680,7 @@ superspeedplus_sublink_attribute_sublink_direction :: enum {
  *   Mb = Mbps
  *   Gb = Gbps
  */
-superspeedplus_sublink_attribute_exponent :: enum {
+superspeedplus_sublink_attribute_exponent :: enum c.int {
 	LIBUSB_SSPLUS_ATTR_EXP_BPS = 0,
 	LIBUSB_SSPLUS_ATTR_EXP_KBS = 1,
 	LIBUSB_SSPLUS_ATTR_EXP_MBS = 2,
@@ -690,7 +690,7 @@ superspeedplus_sublink_attribute_exponent :: enum {
 /** \ingroup libusb_desc
  *  enum used in \ref libusb_ssplus_sublink_attribute
  */
-superspeedplus_sublink_attribute_link_protocol :: enum {
+superspeedplus_sublink_attribute_link_protocol :: enum c.int {
 	LIBUSB_SSPLUS_ATTR_PROT_SS     = 0,
 	LIBUSB_SSPLUS_ATTR_PROT_SSPLUS = 1,
 }
@@ -841,7 +841,7 @@ Version :: struct {
 /** \ingroup libusb_dev
  * Speed codes. Indicates the speed at which the device is operating.
  */
-speed :: enum {
+speed :: enum c.int {
 	/** The OS doesn't report or know the device speed. */
 	LIBUSB_SPEED_UNKNOWN       = 0,
 	/** The device is operating at low speed (1.5MBit/s). */
@@ -865,7 +865,7 @@ speed :: enum {
  * error code or libusb_strerror() to get an end-user suitable description of
  * an error code.
  */
-error :: enum {
+error :: enum c.int {
 	/** Success (no error) */
 	LIBUSB_SUCCESS             = 0,
 	/** Input/output error */
@@ -905,7 +905,7 @@ LIBUSB_ERROR_COUNT :: 14
 
 /** \ingroup libusb_asyncio
  * Transfer type */
-transfer_type :: enum {
+transfer_type :: enum c.int {
 	/** Control transfer */
 	LIBUSB_TRANSFER_TYPE_CONTROL     = 0, // 0U,
 	/** Isochronous transfer */
@@ -920,7 +920,7 @@ transfer_type :: enum {
 
 /** \ingroup libusb_asyncio
  * Transfer status codes */
-Transfer_Status :: enum {
+Transfer_Status :: enum c.int {
 	/** Transfer completed without error. Note that this does not indicate
 	 * that the entire amount of requested data was transferred. */
 	LIBUSB_TRANSFER_COMPLETED,
@@ -944,7 +944,7 @@ Transfer_Status :: enum {
 
 /** \ingroup libusb_asyncio
  * libusb_transfer.flags values */
-transfer_flags :: enum {
+transfer_flags :: enum c.uint {
 	/** Report short frames as errors */
 	LIBUSB_TRANSFER_SHORT_NOT_OK    = 1 << 0, //(1U << 0),
 	/** Automatically free() transfer buffer during libusb_free_transfer().
@@ -1069,7 +1069,7 @@ libusb_transfer :: struct {
  * platform. Test if the loaded library supports a given capability by calling
  * \ref libusb_has_capability().
  */
-libusb_capability :: enum {
+libusb_capability :: enum c.uint {
 	/** The libusb_has_capability() API is available. */
 	LIBUSB_CAP_HAS_CAPABILITY                = 0x0000,
 	/** Hotplug support is available on this platform. */
@@ -1087,7 +1087,7 @@ libusb_capability :: enum {
 /** \ingroup libusb_lib
  *  Log message levels.
  */
-Log_Level :: enum {
+Log_Level :: enum c.int {
 	/** (0) : No messages ever emitted by the library (default) */
 	LIBUSB_LOG_LEVEL_NONE    = 0,
 	/** (1) : Error messages are emitted */
@@ -1107,7 +1107,7 @@ Log_Level :: enum {
  *
  * \see libusb_set_log_cb()
  */
-libusb_log_cb_mode :: enum {
+libusb_log_cb_mode :: enum c.int {
 	/** Callback function handling all log messages. */
 	LIBUSB_LOG_CB_GLOBAL  = (1 << 0),
 	/** Callback function handling context related log messages. */
@@ -1117,7 +1117,7 @@ libusb_log_cb_mode :: enum {
 /** \ingroup libusb_lib
  * Available option values for libusb_set_option() and libusb_init_context().
  */
-libusb_option :: enum {
+libusb_option :: enum c.int {
 	/** Set the log message verbosity.
 	 *
 	 * This option must be provided an argument of type \ref libusb_log_level.
@@ -1481,7 +1481,7 @@ libusb_hotplug_callback_handle :: c.int
  * Since version 1.0.16, \ref LIBUSB_API_VERSION >= 0x01000102
  *
  * Hotplug events */
-libusb_hotplug_event :: enum {
+libusb_hotplug_event :: enum c.int {
 	/** A device has been plugged in and is ready to use */
 	LIBUSB_HOTPLUG_EVENT_DEVICE_ARRIVED = (1 << 0),
 	/** A device has left and is no longer available.
@@ -1495,7 +1495,7 @@ libusb_hotplug_event :: enum {
  * Since version 1.0.16, \ref LIBUSB_API_VERSION >= 0x01000102
  *
  * Hotplug flags */
-libusb_hotplug_flag :: enum {
+libusb_hotplug_flag :: enum c.int {
 	/** Arm the callback and fire it for all matching currently attached devices. */
 	LIBUSB_HOTPLUG_ENUMERATE = (1 << 0),
 }
