@@ -1,3 +1,1 @@
-```sh
-runic rune.yml
-```
+# Odin libusb bindings
