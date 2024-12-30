@@ -1,0 +1,46 @@
+version: 0
+platforms:
+  # - Linux x86_64
+  # - Macos x86_64
+  - Windows x86_64
+from:
+  language: c
+  static: libusb-1.0.a
+  static.windows: libusb-1.0.lib
+  headers: libusb.h
+  defines:
+    # inline: "extern"
+    # SSIZE_T: "ssize_t"
+  ignore:
+    constants:
+      - inline
+    # macros:
+    # - OLIVE_C_
+    # - OLIVEC_CANVAS_NULL
+    # types:
+    #   - ssize_t
+  overwrite:
+    types: &any_type_overwrites
+      ssize_t: "#libc.ssize_t"
+      # ssize_t: "ssize_t"
+  packages:
+    - "core:c/libc"
+to:
+  language: odin
+  package: libusb
+  trim_prefix:
+    functions: libusb_
+    types: libusb_
+    constants: libusb_
+  no_build_tag: yes
+  use_when_else: yes
+  ignore_arch: yes
+  out: "libusb2.odin"
+  # overwrite:
+  #   types:
+  #     ssize_t: "libc.ssize_t"
+  extern:
+    sources:
+      "basetsd.h": "core:c/libc"
+    # remaps:
+    #   ssize_t: "libc.ssize_t"
