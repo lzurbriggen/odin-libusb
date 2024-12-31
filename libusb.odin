@@ -1304,7 +1304,7 @@ foreign lib {
 	libusb_free_platform_descriptor :: proc(platform_descriptor: ^platform_descriptor) ---
 	libusb_get_bus_number :: proc(dev: ^Device) -> c.uint8_t ---
 	libusb_get_port_number :: proc(dev: ^Device) -> c.uint8_t ---
-	libusb_get_port_numbers :: proc(dev: ^Device, port_numbers: ^c.uint8_t, port_numbers_len: c.int) -> c.int ---
+	libusb_get_port_numbers :: proc(dev: ^Device, port_numbers: [^]c.uint8_t, port_numbers_len: c.int) -> c.int ---
 	@(deprecated = "use libusb_get_port_numbers")
 	libusb_get_port_path :: proc(ctx: ^Libusb_Context, dev: ^Device, path: ^c.uint8_t, path_length: c.uint8_t) -> c.int ---
 	libusb_get_parent :: proc(dev: ^Device) -> Device ---
